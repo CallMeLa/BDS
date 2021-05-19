@@ -1,0 +1,147 @@
+Usage example: !remindme 31/01/21 Remember to do the dishes.
+Variables: ReminderDate (Value: 0), ReminderMessage (Value: No message entered)
+Command language: BDScript
+
+
+
+Command trigger: !remindme
+Code:
+$nomention $suppressErrors[Incorrect date format (DD/MM/YY)] $deletecommand
+$onlyIf[$message[1]!=;Missing reminder date (!remindme **DD/MM/YY** Do the dishes.)]
+$onlyIf[$message[2]!=;Missing reminder message (!remindme DD/MM/YY **Do the dishes.**)]
+$if[$checkContains[$message[1];01/;02/;03/;04/;05/;06/;07/;08/;09/;10/;11/;12/;13/;14/;15/;16/;17/;18/;19/;20/;21/;22/;23/;24/;25/;26/;27/;28/;29/;30/;31/]]
+$if[$checkContains[$message[1];/01;/02;/03;/04;/05;/06;/07;/08;/09;/10;/11;/12]]
+$if[$checkContains[$message[1];/21;/22;/23;/24;/25;/26;/27;/28;/29;/30]]
+$setUserVar[ReminderDate;$message[1];$authorID]
+$setUserVar[ReminderMessage;$replaceText[$message;$message[1];;1];$authorID]
+$description[Reminder set, I will notify <@$authorID> on **$message[1]** 🔔]
+$else Missing reminder date (!remindme DD/MM**/YY** Do the dishes.) $endif
+$else Missing reminder date (!remindme DD**/MM**/YY Do the dishes.) $endif
+$else Missing reminder date (!remindme **DD/**MM/YY Do the dishes.) $endif
+
+
+
+Command trigger: $alwaysReply
+Code:
+$if[$getUserVar[ReminderDate;$authorID]!=0]
+$if[$getUserVar[ReminderDate;$authorID]==$day/01/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/02/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/03/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/04/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/05/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/06/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/07/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/08/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/09/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/10/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/11/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$if[$getUserVar[ReminderDate;$authorID]==$day/12/$replaceText[$year;20;;1]]
+$setUserVar[ReminderDate;0;$authorID]
+$setUserVar[ReminderDate;No reminder message entered.;$authorID]
+<@$authorID>
+$title[Reminder]
+$description[<@$authorID> You set a custom reminder for **$getUserVar[ReminderDate;$authorID]**.
+ 
+**Reminder**
+$getUserVar[ReminderMessage;$authorID]]
+$endif
+$endif
