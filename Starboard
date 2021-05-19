@@ -1,0 +1,31 @@
+Usage example: !star {messageID}
+Requirements: Must be in the same channel as the message
+Variables: StarboardChannel (value: put your starboard channel ID here)
+Command language: BDScript
+
+Command trigger: !star
+Code:
+$onlyPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
+$onlyBotPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
+$nomention $deletecommand $supressErrors
+$onlyIf[$isNumber[$message]==true;Please enter the message ID.]
+$onlyIf[$getServerVar[StarboardChannel;$guildID]!=0;Starboard channel has not set.]
+$useChannel[$getServerVar[StarboardChannel;$guildID]]
+🌟 **|** <@$authorOfMessage[$findChannel[$channelID];$message]>
+$authorIcon[$userAvatar[$authorOfMessage[$findChannel[$channelID];$message]]]
+$author[$username[$authorOfMessage[$findChannel[$channelID];$message]]#$discriminator[$authorOfMessage[$findChannel[$channelID];$message]]]
+$description[
+$getMessage[$findChannel[$channelID];$message]
+
+**Original**
+**[Click to jump to message!](https://discord.com/channels/$guildID/$channelID/$message)**
+]
+$if[$checkContains[$getMessage[$findChannel[$channelID];$message];https://]]
+$if[$checkContains[$getMessage[$findChannel[$channelID];$message];.jpg;.png;.gif]]
+$image[$getMessage[$findChannel[$channelID];$message]]
+$endif
+$endif
+$addTimestamp
+$footer[ID: $authorOfMessage[$findChannel[$channelID];$message]]
+$color[#ffe500]
+$addReactions[🌟]
