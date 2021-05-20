@@ -1,0 +1,21 @@
+Usage example:
+Requirements: Channel ID for bot server logs and an $alwaysReply type callback
+Variables: isFirstStart (value: yes)
+Command language: BDScript
+
+Command trigger: $alwaysReply
+Code:
+$if[$getServerVar[isFirstStart]==yes]
+$setServerVar[isFirstStart;no;$guildID]
+$nomention $suppressErrors $botListHide
+$channelSendMessage[**PUT YOUR PRIVATE LOGGING CHANNEL ID HERE**;
+**Server ID:** $guildID
+**Server name:** $serverName[$guildID]
+**Owner:** <@$serverOwner>
+**Members:** $membersCount
+**Roles:** $roleCount
+**Server inv:** $getServerInvite]
+$color[#d19ecc]
+$addTimestamp
+$footer[Have fun!]
+$description[Hey! Thanks for adding me!]
