@@ -1,0 +1,57 @@
+Usage example: !setmuted {roleID}
+Requirements: 
+Variables: MutedRole (value: put your muted role ID here)
+Command language: BDScript
+Command trigger: !setmuted
+Code:
+$nomention
+$onlyAdmin[Missing permissions: `ADMINISTRATOR]
+$onlyPerms[admin;Missing permissions: `ADMINISTRATOR`]
+$onlyBotPerms[manageroles;Missing permissions: `MANAGE_ROLES`]
+$onlyIf[$message!=;Usage: `!setmuted roleID`]
+$setServerVar[MutedRole;$message;$guildID]
+Muted role now bound to <@&$message>
+
+
+
+Usage example: !mute {mention} {reason}
+Requirements: Must mention a user with optional reason
+Variables: MutedRole (value: put your muted role ID here)
+Command language: BDScript
+Command trigger: !mute
+Code:
+$onlyPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
+$onlyBotPerms[manageroles;Missing permissions: `MANAGE_ROLES`]
+$argsCheck[>1;Usage: `!mute @user`]
+$nomention
+$allowMention $suppressErrors
+$if[$message!=]
+$if[$getServerVar[MutedRole;$guildID]==0]
+No muted role set `!setmuted roleID`
+$else
+$if[$mentioned[1;no]!=]
+$giveRole[$mentioned[1;no];$getServerVar[MutedRole;$guildID]]
+$deletecommand
+$channelSendMessage[$channelID;<@$mentioned[1;no]> ***has been muted***]
+$endif
+$endif
+$endif
+
+
+
+Usage example: !unmute {mention} {reason}
+Requirements: Must mention a user with optional reason
+Variables: MutedRole (value: put your muted role ID here)
+Command language: BDScript
+Command trigger: !unmute
+Code:
+$onlyPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
+$onlyBotPerms[manageroles;Missing permissions: `MANAGE_ROLES`]
+$argsCheck[>1;Please mention someone to unmute.]
+$if[$message!=]
+$suppressErrors
+$nomention
+$takeRole[$mentioned[1;no];$getServerVar[MutedRole;$guildID]]
+$channelSendMessage[$channelID;<@$mentioned[1;no]> ***has been unmuted***]
+$deletecommand
+$endif
