@@ -7,11 +7,11 @@ Command trigger: !star
 Code:
 $onlyPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
 $onlyBotPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
-$nomention $deletecommand $supressErrors
+$nomention $deletecommand $suppressErrors
 $onlyIf[$isNumber[$message]==true;Please enter the message ID.]
 $onlyIf[$getServerVar[StarboardChannel;$guildID]!=0;Starboard channel has not set.]
 $useChannel[$getServerVar[StarboardChannel;$guildID]]
-🌟 **|** <@$authorOfMessage[$findChannel[$channelID];$message]>
+**💫 |** <@$authorOfMessage[$findChannel[$channelID];$message]>
 $authorIcon[$userAvatar[$authorOfMessage[$findChannel[$channelID];$message]]]
 $author[$username[$authorOfMessage[$findChannel[$channelID];$message]]#$discriminator[$authorOfMessage[$findChannel[$channelID];$message]]]
 $description[
@@ -29,3 +29,5 @@ $addTimestamp
 $footer[ID: $authorOfMessage[$findChannel[$channelID];$message]]
 $color[#ffe500]
 $addReactions[🌟]
+
+
