@@ -1,0 +1,39 @@
+Usage example: !setenglishonly, !setenglishonly off, !setenglishonly disable
+Requirements: Must have either $alwaysReply or a-Z command triggers
+Variables: EnglishOnly (value: off)
+Command language: BDScript
+
+Command trigger: !setenglishonly
+Code:
+$nomention $deletecommand $suppressErrors
+$onlyPerms[managechannels;Missing permissions: `MANAGE_CHANNELS`]
+$onlyBotPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
+$if[$message==disable]
+$setServerVar[EnglishOnly;off;$guildID]
+All languages now allowed in this server.
+$deleteIn[3]
+$endif
+$if[$message==off]
+$setServerVar[EnglishOnly;$replaceText[$getServerVar[EnglishOnly;$guildID]; $channelID;;1];$guildID]
+All languages now allowed in this channel.
+$deleteIn[3]
+$endif
+$if[$message==]
+$setServerVar[EnglishOnly;$getServerVar[EnglishOnly;$guildID] $channelID;$guildID]
+Only the English language allowed in this channel.
+$deleteIn[3]
+$endif
+
+
+
+Command trigger: $alwaysReply or a-Z command triggers
+Code:
+$if[$getServerVar[EnglishOnly;$guildID]!=off]
+$if[$checkContains[$getServerVar[EnglishOnly;$guildID];$channelID]]
+$if[$checkContains[$noMentionMessage;à;è;ì;ò;ù;Á;É;Í;Ó;Ú;Ý;Ć;Ĺ;Ń;Ő;Ŕ;Ś;Ű;Ź;Ǘ;Ǵ;Ǻ;Ǽ;Ǿ;ϓ;Ӳ;Ḉ;Ḗ;Ḯ;Ḱ;Ḿ;Ṍ;Ṓ;Ṕ;Ṥ;Ṹ;Ẃ;Ấ;Ắ;Ế;Ố;Ớ;Ứ;Ä;Ë;Ï;Ö;Ü;ÿ;Ǖ;Ǘ;Ǚ;Ǜ;Ǟ;Ȫ;Ӓ;Ӛ;Ӝ;Ӟ;Ӥ;Ӧ;Ӫ;Ӭ;Ӱ;Ӵ;Ӹ;Ḧ;Ḯ;Ṏ;ᓯ;Ṳ;Ṻ;Ẅ;Ẍ;ẗ;⍡;⍢;⍥;Ǜ;Ǹ;Ȁ;Ȅ;Ȉ;Ȍ;Ȑ;Ȕ;Ѝ;Ѐ;Ѷ;Ḕ;Ṑ;Ẁ;Ầ;Ằ;Ề;Ồ;Ờ;Ừ;Ỳ;Â;Ê;Î;Ô;Û;Ĉ;Ĝ;Ĥ;Ĵ;Ŝ;Ŵ;Ŷ;Ḓ;Ḙ;Ḽ;ḽ;Ṋ;Ṱ;Ṷ;Ẑ;Ấ;Ầ;Ẩ;Ẫ;Ậ;Ế;Ề;Ể;Ễ;Ệ;Ố;Ồ;Ổ;Ỗ;Ộ;Ç;Ģ;Ķ;Ļ;ļ;Ņ;Ŗ;Ş;Ţ;Ȩ;Ҙ;Ҫ;Ḉ;Ḑ;Ḝ;Ḩ;Ã;Ñ;Õ;Ũ;Ɵ;Ȭ;б;г;д;ж;з;и;л;ь;п;э;ф;ц;ч;ш;щ;ы;я;й;ю;仕;事;仕;事;ي;ر;و;ي;ł;ż]]
+$deletecommand
+<@$authorID> English only.
+$deleteIn[2s]
+$endif
+$endif
+$endif
