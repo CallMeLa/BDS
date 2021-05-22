@@ -1,14 +1,15 @@
 Usage example:
-Requirements: Channel ID for bot server logs and an $alwaysReply type callback
+Requirements: Channel ID for bot server logs and an $alwaysReply type callback (or a-Z command triggers)
 Variables: isFirstStart (value: yes)
 Command language: BDScript
 
 Command trigger: $alwaysReply
 Code:
+
 $if[$getServerVar[isFirstStart;$guildID]==yes]
 $setServerVar[isFirstStart;no;$guildID]
 $nomention $suppressErrors $botListHide
-$channelSendMessage[**PUT YOUR PRIVATE LOGGING CHANNEL ID HERE**;
+$channelSendMessage[PUT YOUR PRIVATE LOGGING CHANNEL ID HERE;
 **Server ID:** $guildID
 **Server name:** $serverName[$guildID]
 **Owner:** <@$serverOwner>
@@ -18,4 +19,4 @@ $channelSendMessage[**PUT YOUR PRIVATE LOGGING CHANNEL ID HERE**;
 $color[#d19ecc]
 $addTimestamp
 $footer[Have fun!]
-$description[Hey! Thanks for adding me!]
+$description[Hey! Thanks for adding me to this server!]
