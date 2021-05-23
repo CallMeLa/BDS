@@ -12,6 +12,7 @@ $nomention $suppressErrors $botListHide
 $channelSendMessage[PUT YOUR PRIVATE LOGGING CHANNEL ID HERE;
 **Server ID:** $guildID
 **Server name:** $serverName[$guildID]
+**Server region:** $serverRegion
 **Owner:** <@$serverOwner>
 **Members:** $membersCount
 **Roles:** $roleCount
@@ -20,3 +21,4 @@ $color[#d19ecc]
 $addTimestamp
 $footer[Have fun!]
 $description[Hey! Thanks for adding me to this server!]
+$endif
