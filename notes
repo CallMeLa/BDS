@@ -1,6 +1,6 @@
-Usage example: !note add {@user/ID} {note}, !note del {@user/ID}, !note {@user/ID}
-Requirements: 
-Variables: UserNotes (value: <&#!0. ) ---include space after "0."
+Usage example: !note add {@user/ID} {new note}, !note del {note number} {@user/ID}, !note clear {@user/ID}, !note edit {note number} {@user/ID} {new note}, !note {@user/ID}
+Requirements: Leave all variable values empty, use unstable mode.
+Variables: UserNotes1, UserNotes2. UserNotes3, UserNotes4, UserNotes5, UserNotes6, UserNotes7, UserNotes8, UserNotes9, UserNotes10. ---leave all values empty.
 Command language: BDScript Unstable
 
 Command trigger: !note
@@ -8,137 +8,212 @@ Code:
 
 $onlyPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
 $onlyBotPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
-$nomention $suppressErrors
+$nomention $suppressErrors[Invalid note number or user/ID]
+
 $if[$noMentionMessage==]
 $if[$message[1]==]
 $title[**!note info**]
-$addField[Description:;Add or remove notes from a user or ID.;no]
-$addField[Usage:;`!note add @user/ID note`, `!note del @user/ID`;no]
+$addField[Description:;Add, delete, edit, view, or clear notes from a user or ID.;no]
+$addField[Usage:;`!note add @user/ID note`, `!note edit (note number) @user/ID new note`, `!note del (note number) @user/ID`, `!note clear @user/ID`, `!note @user/ID`;no]
 $footer[use '!help' for more commands]
 $endif
 $endif
+
 $if[$message[1]==add]
 $if[$mentioned[1;no]!=]
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!10. ]]
+$if[$getUserVar[UserNotes1;$mentioned[1;no]]==]
+$setUserVar[UserNotes1;<&#!1.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes2;$mentioned[1;no]]==]
+$setUserVar[UserNotes2;<&#!2.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes3;$mentioned[1;no]]==]
+$setUserVar[UserNotes3;<&#!3.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes4;$mentioned[1;no]]==]
+$setUserVar[UserNotes4;<&#!4.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes5;$mentioned[1;no]]==]
+$setUserVar[UserNotes5;<&#!5.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes6;$mentioned[1;no]]==]
+$setUserVar[UserNotes6;<&#!6.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes7;$mentioned[1;no]]==]
+$setUserVar[UserNotes7;<&#!7.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes8;$mentioned[1;no]]==]
+$setUserVar[UserNotes8;<&#!8.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes9;$mentioned[1;no]]==]
+$setUserVar[UserNotes9;<&#!9.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes10;$mentioned[1;no]]==]
+$setUserVar[UserNotes10;<&#!10.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
+$description[✅ New note added to <@$mentioned[1;no]>]
+$else
+$if[$getUserVar[UserNotes10;$mentioned[1;no]]!=]
 $description[❌ Can't add anymore notes to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!9. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!10.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!8. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!9.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!7. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!8.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!6. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!7.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!5. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!6.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!4. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!5.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!3. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!4.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!2. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!3.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!1. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!2.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$mentioned[1;no]];<&#!0. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$mentioned[1;no]]<&#!1.  $replaceText[$noMentionMessage;add;;1];$mentioned[1;no]]
-$description[✅ New note added to <@$mentioned[1;no]>]
 $endif $endif $endif $endif $endif $endif $endif $endif $endif $endif $endif
 $endif
 $endif
+
 $if[$message[1]==add]
 $if[$mentioned[1;no]==]
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!10. ]]
+$if[$getUserVar[UserNotes1;$message[2]]==]
+$setUserVar[UserNotes1;<&#!1.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes2;$message[2]]==]
+$setUserVar[UserNotes2;<&#!2.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes3;$message[2]]==]
+$setUserVar[UserNotes3;<&#!3.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes4;$message[2]]==]
+$setUserVar[UserNotes4;<&#!4.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes5;$message[2]]==]
+$setUserVar[UserNotes5;<&#!5.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes6;$message[2]]==]
+$setUserVar[UserNotes6;<&#!6.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes7;$message[2]]==]
+$setUserVar[UserNotes7;<&#!7.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes8;$message[2]]==]
+$setUserVar[UserNotes8;<&#!8.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes9;$message[2]]==]
+$setUserVar[UserNotes9;<&#!9.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes10;$message[2]]==]
+$setUserVar[UserNotes10;<&#!10.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
+$description[✅ New note added to <@$message[2]>]
+$else
+$if[$getUserVar[UserNotes10;$message[2]]!=]
 $description[❌ Can't add anymore notes to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!9. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!10.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!8. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!9.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!7. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!8.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!6. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!7.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!5. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!6.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!4. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!5.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!3. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!4.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!2. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!3.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!1. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!2.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
-$else
-$if[$checkContains[$getUserVar[UserNotes;$message[2]];<&#!0. ]]
-$setUserVar[UserNotes;$getUserVar[UserNotes;$message[2]]<&#!1.  $replaceText[$replaceText[$message;$message[2];;1];add;;1];$message[2]]
-$description[✅ New note added to <@$message[2]>]
 $endif $endif $endif $endif $endif $endif $endif $endif $endif $endif $endif
 $endif
 $endif
+
+$if[$noMentionMessage[1]==edit]
+$if[$mentioned[1;no]!=]
+$if[$checkContains[$noMentionMessage[2];1;2;3;4;5;6;7;8;9;10]]
+$setUserVar[UserNotes$noMentionMessage[2];<&#!$noMentionMessage[2]. $replaceText[$replaceText[$replaceText[$noMentionMessage;$noMentionMessage[2];;1];edit;;1];$mentioned[1;no];;1];$mentioned[1;no]]
+$description[✍ Note edited for <@$mentioned[1;no]>]
+$else
+Missing note number (!note edit **2** @user/ID note)
+$endif
+$else
+$if[$checkContains[$message[2];1;2;3;4;5;6;7;8;9;10]]
+$setUserVar[UserNotes$message[2];<&#!$message[2]. $replaceText[$replaceText[$replaceText[$message;$message[2];;1];edit;;1];$message[3];;1];$message[3]]
+$description[✍ Note edited for <@$message[3]>]
+$else
+Missing note number (!note edit **2** @user/ID note)
+$endif
+$endif
+$endif
+
 $if[$noMentionMessage[1]==del]
 $if[$mentioned[1;no]!=]
-$setUserVar[UserNotes;<&#!0. ;$mentioned[1;no]]
-$description[🗑 Notes deleted for <@$mentioned[1;no]>]
+$if[$checkContains[$noMentionMessage[2];1;2;3;4;5;6;7;8;9;10]]
+$setUserVar[UserNotes$noMentionMessage[2];;$mentioned[1;no]]
+$description[🗑 Note deleted for <@$mentioned[1;no]>]
 $else
-$setUserVar[UserNotes;<&#!0. ;$message[2]]
-$description[🗑 Notes deleted for <@$message[2]>]
+Missing note number (!note del **2** @user/ID)
+$endif
+$else
+$if[$checkContains[$message[2];1;2;3;4;5;6;7;8;9;10]]
+$setUserVar[UserNotes$message[2];;$message[3]]
+$description[🗑 Note deleted for <@$message[3]>]
+$else
+Missing note number (!note del **2** @user/ID)
 $endif
 $endif
+$endif
+
+$if[$noMentionMessage[1]==clear]
+$if[$mentioned[1;no]!=]
+$setUserVar[UserNotes1;;$mentioned[1;no]]
+$setUserVar[UserNotes2;;$mentioned[1;no]]
+$setUserVar[UserNotes3;;$mentioned[1;no]]
+$setUserVar[UserNotes4;;$mentioned[1;no]]
+$setUserVar[UserNotes5;;$mentioned[1;no]]
+$setUserVar[UserNotes6;;$mentioned[1;no]]
+$setUserVar[UserNotes7;;$mentioned[1;no]]
+$setUserVar[UserNotes8;;$mentioned[1;no]]
+$setUserVar[UserNotes9;;$mentioned[1;no]]
+$setUserVar[UserNotes10;;$mentioned[1;no]]
+$description[🗑 Notes cleared for <@$mentioned[1;no]>]
+$else
+$setUserVar[UserNotes1;;$message[2]]
+$setUserVar[UserNotes2;;$message[2]]
+$setUserVar[UserNotes3;;$message[2]]
+$setUserVar[UserNotes4;;$message[2]]
+$setUserVar[UserNotes5;;$message[2]]
+$setUserVar[UserNotes6;;$message[2]]
+$setUserVar[UserNotes7;;$message[2]]
+$setUserVar[UserNotes8;;$message[2]]
+$setUserVar[UserNotes9;;$message[2]]
+$setUserVar[UserNotes10;;$message[2]]
+$description[🗑 Notes cleared for <@$message[2]>]
+$endif
+$endif
+
+$if[$noMentionMessage[1]!=clear]
 $if[$noMentionMessage[1]!=add]
 $if[$noMentionMessage[1]!=del]
 $if[$noMentionMessage[1]!=edit]
 $if[$mentioned[1;no]!=]
-$title[$username[$mentioned[1;no]]'s notes]
-$if[$getUserVar[UserNotes;$mentioned[1;no]]==<&#!0. ]
-$description[*no notes found*]
-$else
-$description[$replaceText[$replaceText[$getUserVar[UserNotes;$mentioned[1;no]];<&#!0. ;;1];<&#!;
-;-1]]
-$endif
+$title[$username[$mentioned[1;no]]#$discriminator[$mentioned[1;no]]'s notes]
+$description[
+$replaceText[$getUserVar[UserNotes1;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes2;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes3;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes4;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes5;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes6;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes7;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes8;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes9;$mentioned[1;no]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes10;$mentioned[1;no]];<&#!;
+;-1]
+]
 $endif
 $if[$isNumber[$message[1]]]
-$title[$username[$message[1]]'s notes]
-$if[$getUserVar[UserNotes;$message[1]]==<&#!0. ]
-$description[*no notes found*]
-$else
-$description[$replaceText[$replaceText[$getUserVar[UserNotes;$message[1]];<&#!0. ;;1];<&#!;
-;-1]]
+$title[$username[$message[1]]#$discriminator[$message[1]]'s notes]
+$description[
+$replaceText[$getUserVar[UserNotes1;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes2;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes3;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes4;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes5;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes6;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes7;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes8;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes9;$message[1]];<&#!;
+;-1]$replaceText[$getUserVar[UserNotes10;$message[1]];<&#!;
+;-1]
+]
 $endif
 $endif
 $endif
