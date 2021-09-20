@@ -31,3 +31,4 @@ $nomention $botListHide $suppressErrors
 $if[$getServerVar[MemberCounter;$guildID]!=off]
 $modifyChannel[$getServerVar[MemberCounter;$guildID];$numberSeparator[$membersCount] Users;!unchanged;!unchanged;!unchanged;!unchanged]
 $endif
+$c[Made with ❤ by github.com/CallMeLa]
