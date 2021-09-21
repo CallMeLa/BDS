@@ -1,10 +1,26 @@
-Usage example: !star {messageID}
-Requirements: Must be in the same channel as the message and requires 2 !star commands.
-Variables: StarboardChannel (value: put your starboard channel ID here), StarboardTotalStars (value: 0)
-Command language: BDScript Unstable
+$c[Usage example: !star {messageID}]
+$c[Requirements: Must be in the same channel as the message and requires 2 !star commands.]
+$c[Variables: StarboardChannel (value: 0), StarboardTotalStars (value: 0)]
+$c[Command language: BDScript Unstable]
 
-Command trigger: !star
-Code:
+
+
+$c[Command trigger: !setstarboard]
+$deletecommand $nomention $suppressErrors
+$onlyPerms[managechannels;You cannot use this command.]
+$if[$message==off]
+$setServerVar[StarboardChannel;0;$guildID]
+Disabled starred messages!
+$deleteIn[5]
+$else
+$setServerVar[StarboardChannel;$channelID;$guildID]
+$deleteIn[5]
+Starred messages will now show in this channel!
+$endif
+
+
+
+$c[Command trigger: !star]
 $onlyPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
 $onlyBotPerms[managemessages;Missing permissions: `MANAGE_MESSAGES`]
 $nomention $suppressErrors[Please enter the message ID]
@@ -31,8 +47,7 @@ $addReactions[🌟]
 
 
 
-Command trigger: !star
-Code:
+$c[Command trigger: !star]
 $onlyPerms[managemessages;]
 $onlyBotPerms[managemessages;]
 $nomention $suppressErrors $deletecommand $botListHide
@@ -40,4 +55,3 @@ $onlyIf[$getServerVar[StarboardChannel;$guildID]!=0;]
 $clear[1;$authorID;no]
 Starring message... please wait.
 $deleteIn[10s]
-
