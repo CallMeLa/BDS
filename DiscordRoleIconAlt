@@ -1,0 +1,12 @@
+$c[ Force an emoji/symbol/tag to a user with a specific role. Example: [TAG\] Username or Username [EMOJI\]. ]
+$c[ In this example we will force a role member to use the heart emoji ❤ if they don't already have it. ]
+$c[ This is an alternative to Discord's official role icons, useful for those without boosters. ]
+$c[ Replace **ROLE ID HERE** in line 8 with a specific role. ]
+$c[ Created with BDScript 2 using $alwaysReply. ]
+$c[ Will not work with server owners. ]
+
+$if[$serverOwner[$guildID]!=$authorID]
+$if[$hasRole[$authorID;**ROLE ID HERE**]==true]
+$if[$checkContains[$nickname[$authorID];❤]==false]
+$changeUsernameWithID[$authorID;$nickname[$authorID] ❤]
+$endif $endif $endif $nomention $suppressErrors
